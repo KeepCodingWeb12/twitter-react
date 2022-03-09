@@ -5,7 +5,12 @@ const TweetsPage = () => {
   const [tweets, setTweets] = useState([]);
 
   useEffect(() => {
-    getLatestTweets().then(tweets => setTweets(tweets));
+    // getLatestTweets().then(tweets => setTweets(tweets));
+    const execute = async () => {
+      const tweets = await getLatestTweets();
+      setTweets(tweets);
+    };
+    execute();
   }, []);
 
   return (

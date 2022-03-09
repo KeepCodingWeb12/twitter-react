@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { getLatestTweets } from './service';
 
+import './TweetsPage.css';
+import styles from './TweetsPage.module.css';
+
 const TweetsPage = () => {
   const [tweets, setTweets] = useState([]);
 
@@ -14,8 +17,16 @@ const TweetsPage = () => {
   }, []);
 
   return (
-    <div className="tweetsPage">
-      <ul>
+    // <div className="tweetsPage" id="page">
+    <div className={styles.tweetsPage}>
+      <ul
+        style={{
+          listStyle: 'none',
+          margin: 0,
+          padding: '2em',
+          display: tweets ? 'block' : 'none',
+        }}
+      >
         {tweets.map(tweet => (
           <li key={tweet.id}>{tweet.content}</li>
         ))}

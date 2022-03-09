@@ -1,14 +1,16 @@
 import Header from './Header';
 
+import './Layout.css';
+
 function Layout({ children, title }) {
   return (
-    <div>
-      <Header />
-      <main>
-        <h2>{title}</h2>
-        <section>{children}</section>
+    <div className="layout">
+      <Header className="layout-header bordered" />
+      <main className="layout-main bordered">
+        <h2 className="layout-title bordered">{title}</h2>
+        <section className="layout-content">{children}</section>
       </main>
-      <footer>© 2022 Keepcoding</footer>
+      <footer className="layout-footer bordered">© 2022 Keepcoding</footer>
     </div>
   );
 }

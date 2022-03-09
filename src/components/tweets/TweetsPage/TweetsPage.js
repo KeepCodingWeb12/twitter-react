@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import Layout from '../layout/Layout';
-import { getLatestTweets } from './service';
+import Layout from '../../layout/Layout';
+import { getLatestTweets } from '../service';
 
 import './TweetsPage.css';
 import styles from './TweetsPage.module.css';

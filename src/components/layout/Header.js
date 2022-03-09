@@ -1,16 +1,21 @@
+import classNames from 'classnames';
 import Button from '../common/Button';
 
 import { ReactComponent as Icon } from '../../assets/twitter.svg';
 
-function Header() {
+import './Header.css';
+
+function Header({ className }) {
   return (
-    <header>
-      <div>
+    <header className={classNames('header', className)}>
+      <div className="header-logo">
         {/* <img src={logo} alt="Twitter-React"></img> */}
         <Icon width="32" height="32" />
       </div>
-      <nav>
-        <Button variant="primary">Login</Button>
+      <nav className="header-nav">
+        <Button variant="primary" className="header-button">
+          Login
+        </Button>
       </nav>
     </header>
   );

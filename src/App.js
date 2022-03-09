@@ -1,6 +1,7 @@
 import classNames from 'classnames';
-import NewTweetPage from './components/tweets/NewTweetPage/NewTweetPage';
 
+import NewTweetPage from './components/tweets/NewTweetPage/NewTweetPage';
+import TweetPage from './components/tweets/TweetPage/TweetPage';
 import TweetsPage from './components/tweets/TweetsPage/TweetsPage';
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     <div className={classNames('App', { container })}>
       <TweetsPage />
       <NewTweetPage />
-      <TweetsPage />
+      <TweetPage />
     </div>
   );
 }

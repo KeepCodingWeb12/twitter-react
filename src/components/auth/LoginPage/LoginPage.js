@@ -30,7 +30,7 @@ function LoginPage({ onLogin }) {
     try {
       resetError();
       setIsLoading(true);
-      const { accessToken } = await login(credentials);
+      await login(credentials);
       setIsLoading(false);
       onLogin();
     } catch (error) {

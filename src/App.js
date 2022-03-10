@@ -5,8 +5,8 @@ import NewTweetPage from './components/tweets/NewTweetPage/NewTweetPage';
 import TweetPage from './components/tweets/TweetPage/TweetPage';
 import TweetsPage from './components/tweets/TweetsPage/TweetsPage';
 
-function App() {
-  const [isLogged, setIsLogged] = useState(false);
+function App({ isInitiallyLogged }) {
+  const [isLogged, setIsLogged] = useState(isInitiallyLogged);
 
   const handleLogin = () => {
     setIsLogged(true);

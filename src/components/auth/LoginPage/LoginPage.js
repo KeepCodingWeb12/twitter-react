@@ -6,6 +6,7 @@ function LoginPage() {
     username: '',
     password: '',
   });
+  const { username, password } = credentials;
 
   const handleChange = event => {
     setCredentials(credentials => ({
@@ -21,16 +22,20 @@ function LoginPage() {
         <input
           type="text"
           name="username"
-          value={credentials.username}
+          value={username}
           onChange={handleChange}
         />
         <input
           type="password"
           name="password"
-          value={credentials.password}
+          value={password}
           onChange={handleChange}
         />
-        <Button type="submit" variant="primary">
+        <Button
+          type="submit"
+          variant="primary"
+          disabled={!username || !password}
+        >
           Log in
         </Button>
       </form>

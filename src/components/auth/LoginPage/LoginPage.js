@@ -5,13 +5,18 @@ function LoginPage() {
   const [credentials, setCredentials] = useState({
     username: '',
     password: '',
+    remember: false,
   });
-  const { username, password } = credentials;
+
+  const { username, password, remember } = credentials;
 
   const handleChange = event => {
     setCredentials(credentials => ({
       ...credentials,
-      [event.target.name]: event.target.value,
+      [event.target.name]:
+        event.target.type === 'checkbox'
+          ? event.target.checked
+          : event.target.value,
     }));
   };
 
@@ -36,6 +41,23 @@ function LoginPage() {
           value={password}
           onChange={handleChange}
         />
+        <input
+          type="checkbox"
+          name="remember"
+          checked={remember}
+          value="remember"
+          onChange={handleChange}
+        />
+        <select value="2" onChange={event => console.log(event)}>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+        <input
+          type="file"
+          onChange={event => console.log(event.target.files[0])}
+        />
+
         <Button
           type="submit"
           variant="primary"

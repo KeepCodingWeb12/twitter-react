@@ -15,10 +15,15 @@ function LoginPage() {
     }));
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log('call to api', credentials);
+  };
+
   return (
     <div className="loginPage">
       <h1 className="loginPage-title">Log in to Twitter</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="username"

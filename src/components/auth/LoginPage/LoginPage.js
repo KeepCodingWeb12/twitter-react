@@ -8,6 +8,8 @@ function LoginPage({ onLogin }) {
     password: '',
     remember: false,
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const { username, password, remember } = credentials;
 
@@ -21,14 +23,19 @@ function LoginPage({ onLogin }) {
     }));
   };
 
+  const resetError = () => setError(null);
+
   const handleSubmit = async event => {
     event.preventDefault();
     try {
+      resetError();
+      setIsLoading(true);
       const { accessToken } = await login(credentials);
+      setIsLoading(false);
       onLogin();
-      console.log('logged', accessToken);
     } catch (error) {
-      console.log(error);
+      setError(error);
+      setIsLoading(false);
     }
   };
 
@@ -68,11 +75,16 @@ function LoginPage({ onLogin }) {
         <Button
           type="submit"
           variant="primary"
-          disabled={!username || !password}
+          disabled={!username || !password || isLoading}
         >
           Log in
         </Button>
       </form>
+      {error && (
+        <div onClick={resetError} style={{ color: 'red' }}>
+          {error.message}
+        </div>
+      )}
     </div>
   );
 }

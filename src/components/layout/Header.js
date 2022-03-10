@@ -13,9 +13,13 @@ function Header({ className, isLogged }) {
         <Icon width="32" height="32" />
       </div>
       <nav className="header-nav">
-        <Button variant="primary" className="header-button">
-          {isLogged ? 'Logout' : 'Login'}
-        </Button>
+        {isLogged ? (
+          <Button className="header-button">Logout</Button>
+        ) : (
+          <Button variant="primary" className="header-button">
+            Login
+          </Button>
+        )}
       </nav>
     </header>
   );

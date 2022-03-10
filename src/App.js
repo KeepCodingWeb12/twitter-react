@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 
+import LoginPage from './components/auth/LoginPage/LoginPage';
 import NewTweetPage from './components/tweets/NewTweetPage/NewTweetPage';
 import TweetPage from './components/tweets/TweetPage/TweetPage';
 import TweetsPage from './components/tweets/TweetsPage/TweetsPage';
@@ -9,9 +10,10 @@ function App() {
   return (
     // <div className={`App ${container ? 'container' : ''}`}>
     <div className={classNames('App', { container })}>
-      <TweetsPage />
+      {/* <TweetsPage />
       <NewTweetPage />
-      <TweetPage />
+      <TweetPage /> */}
+      <LoginPage />
     </div>
   );
 }

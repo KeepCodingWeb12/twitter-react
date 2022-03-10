@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Button from '../../common/Button';
+import { login } from '../service';
 
-function LoginPage() {
+function LoginPage({ onLogin }) {
   const [credentials, setCredentials] = useState({
     username: '',
     password: '',
@@ -20,9 +21,15 @@ function LoginPage() {
     }));
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    console.log('call to api', credentials);
+    try {
+      const { accessToken } = await login(credentials);
+      onLogin();
+      console.log('logged', accessToken);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { useState } from 'react';
 
 import LoginPage from './components/auth/LoginPage/LoginPage';
 import NewTweetPage from './components/tweets/NewTweetPage/NewTweetPage';
@@ -6,14 +6,22 @@ import TweetPage from './components/tweets/TweetPage/TweetPage';
 import TweetsPage from './components/tweets/TweetsPage/TweetsPage';
 
 function App() {
-  const container = true;
+  const [isLogged, setIsLogged] = useState(false);
+
+  const handleLogin = () => {
+    setIsLogged(true);
+  };
+
   return (
-    // <div className={`App ${container ? 'container' : ''}`}>
-    <div className={classNames('App', { container })}>
+    <div className="App">
       {/* <TweetsPage />
       <NewTweetPage />
       <TweetPage /> */}
-      <LoginPage />
+      {isLogged ? (
+        <TweetsPage isLogged={isLogged} />
+      ) : (
+        <LoginPage onLogin={handleLogin} />
+      )}
     </div>
   );
 }

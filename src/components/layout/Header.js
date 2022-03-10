@@ -5,7 +5,7 @@ import { ReactComponent as Icon } from '../../assets/twitter.svg';
 
 import './Header.css';
 
-function Header({ className }) {
+function Header({ className, isLogged }) {
   return (
     <header className={classNames('header', className)}>
       <div className="header-logo">
@@ -14,7 +14,7 @@ function Header({ className }) {
       </div>
       <nav className="header-nav">
         <Button variant="primary" className="header-button">
-          Login
+          {isLogged ? 'Logout' : 'Login'}
         </Button>
       </nav>
     </header>

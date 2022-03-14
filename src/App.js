@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import LoginPage from './components/auth/LoginPage/LoginPage';
 import NewTweetPage from './components/tweets/NewTweetPage/NewTweetPage';
@@ -18,14 +19,18 @@ function App({ isInitiallyLogged }) {
 
   return (
     <div className="App">
-      {/* <TweetsPage />
-      <NewTweetPage />
-      <TweetPage /> */}
-      {isLogged ? (
-        <TweetsPage isLogged={isLogged} onLogout={handleLogout} />
-      ) : (
-        <LoginPage onLogin={handleLogin} />
-      )}
+      <Routes>
+        <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+        <Route
+          path="/tweets"
+          element={<TweetsPage isLogged={isLogged} onLogout={handleLogout} />}
+        />
+        <Route path="/tweets/:tweetId" element={<TweetPage />} />
+        <Route path="/tweets/new" element={<NewTweetPage />} />
+        <Route path="/" element={<Navigate to="/tweets" />} />
+        <Route path="/404" element={<div>404 | Not Found Page</div>} />
+        <Route path="*" element={<Navigate to="/404" />} />
+      </Routes>
     </div>
   );
 }

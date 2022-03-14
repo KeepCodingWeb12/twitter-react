@@ -7,6 +7,7 @@ import NewTweetPage from './components/tweets/NewTweetPage/NewTweetPage';
 import TweetPage from './components/tweets/TweetPage/TweetPage';
 import TweetsPage from './components/tweets/TweetsPage/TweetsPage';
 import { AuthContextProvider } from './components/auth/context';
+import Layout from './components/layout/Layout';
 
 function App({ isInitiallyLogged }) {
   const [isLogged, setIsLogged] = useState(isInitiallyLogged);
@@ -24,16 +25,18 @@ function App({ isInitiallyLogged }) {
       <AuthContextProvider value={{ isLogged, handleLogin, handleLogout }}>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/tweets" element={<TweetsPage />} />
-          <Route path="/tweets/:tweetId" element={<TweetPage />} />
-          <Route
-            path="/tweets/new"
-            element={
-              <RequireAuth>
-                <NewTweetPage />
-              </RequireAuth>
-            }
-          />
+          <Route path="/tweets" element={<Layout />}>
+            <Route index element={<TweetsPage />} />
+            <Route path=":tweetId" element={<TweetPage />} />
+            <Route
+              path="/tweets/new"
+              element={
+                <RequireAuth>
+                  <NewTweetPage />
+                </RequireAuth>
+              }
+            />
+          </Route>
           <Route path="/" element={<Navigate to="/tweets" />} />
           <Route path="/404" element={<div>404 | Not Found Page</div>} />
           <Route path="*" element={<Navigate to="/404" />} />

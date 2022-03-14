@@ -1,14 +1,14 @@
+import { Outlet } from 'react-router-dom';
 import Header from './Header';
 
 import './Layout.css';
 
-function Layout({ children, title }) {
+function Layout() {
   return (
     <div className="layout">
       <Header className="layout-header bordered" />
       <main className="layout-main bordered">
-        <h2 className="layout-title bordered">{title}</h2>
-        <section className="layout-content">{children}</section>
+        <Outlet />
       </main>
       <footer className="layout-footer bordered">© 2022 Keepcoding</footer>
     </div>

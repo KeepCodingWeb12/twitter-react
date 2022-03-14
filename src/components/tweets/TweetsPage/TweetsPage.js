@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Layout from '../../layout/Layout';
+import Page from '../../layout/Page';
 import { getLatestTweets } from '../service';
 
 import './TweetsPage.css';
@@ -19,7 +19,7 @@ const TweetsPage = () => {
   }, []);
 
   return (
-    <Layout title="What's going on...">
+    <Page title="What's going on...">
       <div className={styles.tweetsPage}>
         <ul
           style={{
@@ -36,7 +36,7 @@ const TweetsPage = () => {
           ))}
         </ul>
       </div>
-    </Layout>
+    </Page>
   );
 };
 

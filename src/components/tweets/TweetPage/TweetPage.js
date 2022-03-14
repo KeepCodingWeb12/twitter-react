@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
-import Layout from '../../layout/Layout';
+import Page from '../../layout/Page';
 
 const TweetPage = () => {
   const { tweetId } = useParams();
   return (
-    <Layout title="Tweet detail">
-      <div>TweetPage {tweetId}</div>
-    </Layout>
+    <Page title="Tweet detail">
+      <div>TweetPage {tweetId}</div>;
+    </Page>
   );
 };
 

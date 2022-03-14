@@ -5,7 +5,7 @@ import { getLatestTweets } from '../service';
 import './TweetsPage.css';
 import styles from './TweetsPage.module.css';
 
-const TweetsPage = ({ isLogged }) => {
+const TweetsPage = props => {
   const [tweets, setTweets] = useState([]);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const TweetsPage = ({ isLogged }) => {
   }, []);
 
   return (
-    <Layout title="What's going on..." isLogged={isLogged}>
+    <Layout title="What's going on..." {...props}>
       <div className={styles.tweetsPage}>
         <ul
           style={{

@@ -12,13 +12,17 @@ function App({ isInitiallyLogged }) {
     setIsLogged(true);
   };
 
+  const handleLogout = () => {
+    setIsLogged(false);
+  };
+
   return (
     <div className="App">
       {/* <TweetsPage />
       <NewTweetPage />
       <TweetPage /> */}
       {isLogged ? (
-        <TweetsPage isLogged={isLogged} />
+        <TweetsPage isLogged={isLogged} onLogout={handleLogout} />
       ) : (
         <LoginPage onLogin={handleLogin} />
       )}

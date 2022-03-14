@@ -4,8 +4,14 @@ import Button from '../common/Button';
 import { ReactComponent as Icon } from '../../assets/twitter.svg';
 
 import './Header.css';
+import { logout } from '../auth/service';
 
-function Header({ className, isLogged }) {
+function Header({ className, isLogged, onLogout }) {
+  const handleLogoutClick = async () => {
+    await logout();
+    onLogout();
+  };
+
   return (
     <header className={classNames('header', className)}>
       <div className="header-logo">
@@ -14,7 +20,9 @@ function Header({ className, isLogged }) {
       </div>
       <nav className="header-nav">
         {isLogged ? (
-          <Button className="header-button">Logout</Button>
+          <Button className="header-button" onClick={handleLogoutClick}>
+            Logout
+          </Button>
         ) : (
           <Button variant="primary" className="header-button">
             Login

@@ -5,7 +5,7 @@ const TweetPage = () => {
   const { tweetId } = useParams();
   return (
     <Page title="Tweet detail">
-      <div>TweetPage {tweetId}</div>;
+      <div>TweetPage {tweetId}</div>
     </Page>
   );
 };

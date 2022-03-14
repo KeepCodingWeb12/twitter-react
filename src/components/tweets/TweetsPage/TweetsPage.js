@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../../layout/Layout';
 import { getLatestTweets } from '../service';
 
@@ -29,7 +30,9 @@ const TweetsPage = props => {
           }}
         >
           {tweets.map(tweet => (
-            <li key={tweet.id}>{tweet.content}</li>
+            <li key={tweet.id}>
+              <Link to={`/tweets/${tweet.id}`}>{tweet.content}</Link>
+            </li>
           ))}
         </ul>
       </div>

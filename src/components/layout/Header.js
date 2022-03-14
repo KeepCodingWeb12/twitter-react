@@ -1,18 +1,12 @@
 import { Link, NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 
-import Button from '../common/Button';
 import { ReactComponent as Icon } from '../../assets/twitter.svg';
-import { logout } from '../auth/service';
 
 import './Header.css';
+import AuthButton from '../auth/AuthButton';
 
-function Header({ className, isLogged, onLogout }) {
-  const handleLogoutClick = async () => {
-    await logout();
-    onLogout();
-  };
-
+function Header({ className }) {
   return (
     <header className={classNames('header', className)}>
       <Link to="/">
@@ -37,15 +31,7 @@ function Header({ className, isLogged, onLogout }) {
         >
           See all tweets
         </NavLink>
-        {isLogged ? (
-          <Button className="header-button" onClick={handleLogoutClick}>
-            Logout
-          </Button>
-        ) : (
-          <Button variant="primary" className="header-button">
-            Login
-          </Button>
-        )}
+        <AuthButton className="header-button" />
       </nav>
     </header>
   );

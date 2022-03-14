@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../../common/Button';
 import FormField from '../../common/FormField';
+import AuthContext from '../context';
 import { login } from '../service';
 
 import './LoginPage.css';
 
-function LoginPage({ onLogin }) {
+function LoginPage() {
+  const { handleLogin: onLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [credentials, setCredentials] = useState({

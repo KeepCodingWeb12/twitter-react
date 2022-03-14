@@ -6,6 +6,7 @@ import RequireAuth from './components/auth/RequireAuth';
 import NewTweetPage from './components/tweets/NewTweetPage/NewTweetPage';
 import TweetPage from './components/tweets/TweetPage/TweetPage';
 import TweetsPage from './components/tweets/TweetsPage/TweetsPage';
+import { AuthContextProvider } from './components/auth/context';
 
 function App({ isInitiallyLogged }) {
   const [isLogged, setIsLogged] = useState(isInitiallyLogged);
@@ -20,28 +21,24 @@ function App({ isInitiallyLogged }) {
 
   return (
     <div className="App">
-      <Routes>
-        <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
-        <Route
-          path="/tweets"
-          element={<TweetsPage isLogged={isLogged} onLogout={handleLogout} />}
-        />
-        <Route
-          path="/tweets/:tweetId"
-          element={<TweetPage isLogged={isLogged} onLogout={handleLogout} />}
-        />
-        <Route
-          path="/tweets/new"
-          element={
-            <RequireAuth isLogged={isLogged}>
-              <NewTweetPage isLogged={isLogged} onLogout={handleLogout} />
-            </RequireAuth>
-          }
-        />
-        <Route path="/" element={<Navigate to="/tweets" />} />
-        <Route path="/404" element={<div>404 | Not Found Page</div>} />
-        <Route path="*" element={<Navigate to="/404" />} />
-      </Routes>
+      <AuthContextProvider value={{ isLogged, handleLogin, handleLogout }}>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/tweets" element={<TweetsPage />} />
+          <Route path="/tweets/:tweetId" element={<TweetPage />} />
+          <Route
+            path="/tweets/new"
+            element={
+              <RequireAuth>
+                <NewTweetPage />
+              </RequireAuth>
+            }
+          />
+          <Route path="/" element={<Navigate to="/tweets" />} />
+          <Route path="/404" element={<div>404 | Not Found Page</div>} />
+          <Route path="*" element={<Navigate to="/404" />} />
+        </Routes>
+      </AuthContextProvider>
     </div>
   );
 }

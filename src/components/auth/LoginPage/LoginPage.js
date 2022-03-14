@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import Button from '../../common/Button';
+import FormField from '../../common/FormField';
 import { login } from '../service';
+
+import './LoginPage.css';
 
 function LoginPage({ onLogin }) {
   const [credentials, setCredentials] = useState({
@@ -42,16 +45,20 @@ function LoginPage({ onLogin }) {
   return (
     <div className="loginPage">
       <h1 className="loginPage-title">Log in to Twitter</h1>
-      <form onSubmit={handleSubmit}>
-        <input
+      <form className="loginForm" onSubmit={handleSubmit}>
+        <FormField
           type="text"
           name="username"
+          label="phone, email or username"
+          className="loginForm-field"
           value={username}
           onChange={handleChange}
         />
-        <input
+        <FormField
           type="password"
           name="password"
+          label="password"
+          className="loginForm-field"
           value={password}
           onChange={handleChange}
         />
@@ -73,6 +80,7 @@ function LoginPage({ onLogin }) {
         />
 
         <Button
+          className="loginForm-submit"
           type="submit"
           variant="primary"
           disabled={!username || !password || isLoading}
@@ -81,7 +89,7 @@ function LoginPage({ onLogin }) {
         </Button>
       </form>
       {error && (
-        <div onClick={resetError} style={{ color: 'red' }}>
+        <div onClick={resetError} className="loginPage-error">
           {error.message}
         </div>
       )}

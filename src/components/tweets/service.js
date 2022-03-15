@@ -11,3 +11,8 @@ export const getTweet = tweetId => {
   const url = `${tweetsBaseUrl}/${tweetId}?_expand=user&_embed=likes`;
   return client.get(url);
 };
+
+export const createTweet = tweet => {
+  const url = tweetsBaseUrl;
+  return client.post(url, tweet);
+};

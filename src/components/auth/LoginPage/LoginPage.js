@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../../common/Button';
 import FormField from '../../common/FormField';
@@ -8,6 +8,7 @@ import { login } from '../service';
 import './LoginPage.css';
 
 function LoginPage() {
+  const ref = useRef(null);
   const { handleLogin: onLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,6 +19,11 @@ function LoginPage() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    console.log(ref.current);
+    ref.current.focus();
+  }, []);
 
   const { username, password, remember } = credentials;
 
@@ -60,6 +66,7 @@ function LoginPage() {
           className="loginForm-field"
           value={username}
           onChange={handleChange}
+          // ref={ref}
         />
         <FormField
           type="password"
@@ -68,6 +75,7 @@ function LoginPage() {
           className="loginForm-field"
           value={password}
           onChange={handleChange}
+          ref={ref}
         />
         <input
           type="checkbox"

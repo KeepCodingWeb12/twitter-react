@@ -24,9 +24,11 @@ const TweetsPage = () => {
     // getLatestTweets().then(tweets => setTweets(tweets));
     const execute = async () => {
       const tweets = await getLatestTweets();
-      setTweets([]);
+      setTweets(tweets);
     };
     execute();
+
+    return () => {};
   }, []);
 
   return (

@@ -4,12 +4,12 @@ import Button from '../../common/Button';
 import FormField from '../../common/FormField';
 import AuthContext from '../context';
 import { login } from '../service';
+import T from 'prop-types';
 
 import './LoginPage.css';
 
-function LoginPage() {
+function LoginPage({ onLogin }) {
   const ref = useRef(null);
-  const { handleLogin: onLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [credentials, setCredentials] = useState({
@@ -111,5 +111,9 @@ function LoginPage() {
     </div>
   );
 }
+
+LoginPage.propTypes = {
+  onLogin: T.func,
+};
 
 export default LoginPage;

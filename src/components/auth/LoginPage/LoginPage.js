@@ -1,4 +1,11 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../../common/Button';
 import FormField from '../../common/FormField';
@@ -27,7 +34,7 @@ function LoginPage({ onLogin }) {
 
   const { username, password, remember } = credentials;
 
-  const handleChange = event => {
+  const handleChange = useCallback(event => {
     setCredentials(credentials => ({
       ...credentials,
       [event.target.name]:
@@ -35,7 +42,7 @@ function LoginPage({ onLogin }) {
           ? event.target.checked
           : event.target.value,
     }));
-  };
+  }, []);
 
   const resetError = () => setError(null);
 
@@ -54,6 +61,11 @@ function LoginPage({ onLogin }) {
       setIsLoading(false);
     }
   };
+
+  const buttonDisabled = useMemo(() => {
+    console.log('calculando...');
+    return !username || !password || isLoading;
+  }, [username, password, isLoading]);
 
   return (
     <div className="loginPage">
@@ -98,7 +110,7 @@ function LoginPage({ onLogin }) {
           className="loginForm-submit"
           type="submit"
           variant="primary"
-          disabled={!username || !password || isLoading}
+          disabled={buttonDisabled}
         >
           Log in
         </Button>

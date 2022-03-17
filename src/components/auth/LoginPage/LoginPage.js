@@ -1,21 +1,23 @@
-import {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../../common/Button';
 import FormField from '../../common/FormField';
-import AuthContext from '../context';
 import { login } from '../service';
 import T from 'prop-types';
 
 import './LoginPage.css';
 
+function useRenders() {
+  const count = useRef(1);
+
+  useEffect(() => {
+    count.current++;
+  });
+  return count.current;
+}
+
 function LoginPage({ onLogin }) {
+  const renders = useRenders();
   const ref = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -69,6 +71,7 @@ function LoginPage({ onLogin }) {
 
   return (
     <div className="loginPage">
+      {renders}
       <h1 className="loginPage-title">Log in to Twitter</h1>
       <form className="loginForm" onSubmit={handleSubmit}>
         <FormField

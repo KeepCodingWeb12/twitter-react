@@ -17,7 +17,7 @@ const EmptyList = () => (
   </div>
 );
 
-const TweetsPage = () => {
+const useTweets = () => {
   const [tweets, setTweets] = useState([]);
 
   useEffect(() => {
@@ -30,6 +30,12 @@ const TweetsPage = () => {
 
     return () => {};
   }, []);
+
+  return tweets;
+};
+
+const TweetsPage = () => {
+  const tweets = useTweets();
 
   return (
     <Page title="What's going on...">

@@ -1,12 +1,11 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../common/Button';
 
 import { logout } from '../auth/service';
-import AuthContext from './context';
+import { useAuth } from './context';
 
 function AuthButton({ className }) {
-  const { isLogged, handleLogout: onLogout } = useContext(AuthContext);
+  const { isLogged, handleLogout: onLogout } = useAuth();
 
   const handleLogoutClick = async () => {
     await logout();
